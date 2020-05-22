@@ -54,23 +54,53 @@ class ItemViewModel(application:Application) : ViewModel() {
     }
 
     fun removeItem(id:Long){
-        dbHelper.removeItem(id)
 
-        // 기존 data 가져옴
+        // DB에서 제거
+        val isDelteedInDB = dbHelper.removeItem(id)
+
+        // DB에서 제거 안되었으면 return
+        if(!isDelteedInDB) return
+
+        // 기존 데이터 가져옴
         val oldItems = itemList.value
         val clonedItems = ArrayList<Item>()
 
-        for ((index, value) in oldItems!!.withIndex()) {
-            clonedItems.add(value)
+        // 기존 리스트를 clonedItems로 복사
+        for (i in oldItems!!.indices) {
+            clonedItems.add(oldItems.get(i))
         }
+
         var ckIndex = -1
-        for ((index, value) in clonedItems!!.withIndex()) {
-            val item = clonedItems[index]
+        // 리스트에서 해당 ID를 찾아 삭제
+        for (i in clonedItems.indices) {
+            val item = clonedItems.get(i)
             if(item.id == id){
-                ckIndex = index;
+                ckIndex = i;
+//                clonedItems.removeAt(i)
             }
-            clonedItems.add(value)
         }
+
+//        for ((index, value) in oldItems!!.withIndex()) {
+//            clonedItems.add(value)
+//        }
+
+//        for ((index, value) in clonedItems!!.withIndex()) {
+//            val item = clonedItems[index]
+//            if(item.id == id){
+//                ckIndex = index;
+//                clonedItems.remove(value)
+//            }
+//            clonedItems.add(value)
+//        }
+
+
+//        for (i in clonedItems.indices) {
+//            val item = clonedItems.get(i)
+//            if(item.id == id){
+////                ckIndex = index;
+//                clonedItems.removeAt(i)
+//            }
+//        }
 
         if(ckIndex != -1){
             clonedItems.removeAt(ckIndex)

@@ -17,6 +17,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -64,8 +67,7 @@ class MainActivity : AppCompatActivity() {
 
             with(builder)
             {
-                setTitle("Add Item")
-                setMessage("Add title")
+                setMessage("내용을 입력해 주세요")
                 setView(inUrl)
                 setPositiveButton("Add", DialogInterface.OnClickListener(function = positiveButtonClick))
                 setNegativeButton(android.R.string.no, null)
@@ -91,7 +93,7 @@ class MainActivity : AppCompatActivity() {
         override fun onBindViewHolder(holder: ItemAdapter.ViewHolder, position: Int) {
             val item = itemList[position]
             holder.tvTitle.setText(item.title)
-            val date = Date(item.date).toString()
+            val date = SimpleDateFormat("yyyy년 MM년 dd일 E요일 HH:mm").format(item.date)
             holder.tvDate.setText(date)
         }
 
