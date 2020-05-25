@@ -24,7 +24,9 @@ class DBhelper(context: Context, factory:SQLiteDatabase.CursorFactory?)
         onCreate(db)
     }
 
-    fun addItem(title:String, date:Long) : Long{
+    // ContentValues : DB에 데이터를 넣기위한 매개체가 된다
+    // ContentValues : ContentResolver가 데이터를 처리하는 수단
+   fun addItem(title:String, date:Long) : Long{
         val values = ContentValues()
         values.put(DBsetting.DBEntry.COLUMN_TITLE, title)
         values.put(DBsetting.DBEntry.COLUMN_DATE, date)
@@ -47,21 +49,7 @@ class DBhelper(context: Context, factory:SQLiteDatabase.CursorFactory?)
     fun loadItems() : List<Item>{
         val itemList = ArrayList<Item>()
         val db = this.writableDatabase
-//        val selectQuery = "SELECT * FROM $DBsetting.DBEntry.TABLE_NAME"
-//        val cursor = db.rawQuery(selectQuery, null)
-//        if (cursor != null) {
-//            cursor.moveToFirst()
-//            while (cursor.moveToNext()) {
-//
-//                val id = cursor.getLong(cursor.getColumnIndex(DBsetting.DBEntry._ID))
-//                val title = cursor.getString(cursor.getColumnIndex(DBsetting.DBEntry.COLUMN_TITLE))
-//                val date = cursor.getLong(cursor.getColumnIndex(DBsetting.DBEntry.COLUMN_DATE))
-//                val item = Item(id,title,date)
-//
-//                itemList.add(item)
-//            }
-//        }
-
+        // Cursor : 테이블의 행을 하나하나 이동하며 참조하는듯 Data를 처리
         val cursor = db.query(
             DBsetting.DBEntry.TABLE_NAME, arrayOf(
                 DBsetting.DBEntry._ID,

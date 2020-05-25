@@ -10,22 +10,20 @@ import kotlin.collections.ArrayList
 
 class ItemViewModel(application:Application) : ViewModel() {
 
-//    val itemList : MutableLiveData<List<Item>> by lazy{
-//        MutableLiveData<List<Item>>()
-//    }
-
     var dbHelper : DBhelper
+    // LiveData vs MutableLiveData
+    // 일반적인 LiveData형은 변경할 수 없고 오로지 데이터의 변경값만을 소비하는데 반해
+    // MutableLiveData는 데이터를 UI Thread와 Background Thread에서 선택적으로 바꿀 수 있습니다.
     var itemList : MutableLiveData<List<Item>>
+
+    // setValue : Main Thread 에서 실행
+    // postValue : Background Thread에서 실행
 
     init {
         itemList = MutableLiveData<List<Item>>()
         dbHelper = DBhelper(application,null)
         loadItems()
     }
-//
-//    val dbHelper : DBhelper by lazy{
-//        DBhelper(application,null)
-//    }
 
     fun getItems(): MutableLiveData<List<Item>> {
         return itemList
@@ -80,40 +78,12 @@ class ItemViewModel(application:Application) : ViewModel() {
             }
         }
 
-//        for ((index, value) in oldItems!!.withIndex()) {
-//            clonedItems.add(value)
-//        }
-
-//        for ((index, value) in clonedItems!!.withIndex()) {
-//            val item = clonedItems[index]
-//            if(item.id == id){
-//                ckIndex = index;
-//                clonedItems.remove(value)
-//            }
-//            clonedItems.add(value)
-//        }
-
-
-//        for (i in clonedItems.indices) {
-//            val item = clonedItems.get(i)
-//            if(item.id == id){
-////                ckIndex = index;
-//                clonedItems.removeAt(i)
-//            }
-//        }
-
         if(ckIndex != -1){
             clonedItems.removeAt(ckIndex)
         }
         itemList.value = clonedItems
 
     }
-
-//    class Factory(val application: Application) : ViewModelProvider.Factory {
-//        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-//            return ItemViewModel(application) as T
-//        }
-//    }
 
     class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
