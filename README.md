@@ -1,10 +1,6 @@
-# Jworld
-Welcom to Jworld
+# Welcom to Jworld
 
 ### Language
-
-Used in Projects
-
 ```
 Java
 Kotlin
