@@ -5,14 +5,12 @@
 Java
 Kotlin
 ```
-
-# List
-## Android Project
+## Android Project List
 * [Android LiveData : Kotlin](https://github.com/yongtaii/yongapps/tree/master/Android-LiveDataBasic)
 * [Android MVVM : KaKao Search with Java](https://github.com/yongtaii/yongapps/tree/master/AndroidMVVM-Yongapp-KakaoSearch)
 * [Android ROOM : Todo List with Java](https://github.com/yongtaii/yongapps/tree/master/AndroidRoom-Yongapp-TodoList)
 
-## PDF List
+## PDF File List
 * [PDF : Android LiveData](https://github.com/yongtaii/yongapps/tree/master/PDF)
 * [PDF : Android MVVM](https://github.com/yongtaii/yongapps/tree/master/PDF)
 * [PDF : Android NDK](https://github.com/yongtaii/yongapps/tree/master/PDF)
