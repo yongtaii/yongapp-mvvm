@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.rnd.jworld.rxjavaretrofit.pojo.Currency
 import java.text.SimpleDateFormat
 
 // 리사이클러뷰 vs 리스트뷰 : 레이아웃매니저, ViewHolder 패턴 의무사용, Item에 대한 뷰의 변형이나 애니메이션 할수있는 개념추가가
@@ -15,13 +16,7 @@ import java.text.SimpleDateFormat
 // ItemDecoration : 아이템 항목에서 서브 뷰에대 한 처리, 쉽게 아이템들을 divide 할 수있다
 // ItemAnimation  : 아이템 항목이 추가/제거 되거나 정렬될때 애니메이션 처리
 
-class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
-
-    lateinit var itemList
-
-    init {
-        itemList =
-    }
+class RecyclerViewAdapter(private val items:ArrayList<Currency>) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
 
     // onCreateViewHolder : 뷰 홀더를 생성하고 뷰를 붙여주는 부분
     // 리사이클러뷰 vs 리스트뷰 : 리스트 뷰가 사용했던 getView() 메서드는 매번 호출되면서 null처리를 해야했다면, onCreateViewHolder는 새롭게 생성될때만 불린다
@@ -32,33 +27,32 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
     }
 
     override fun getItemCount(): Int {
-        return itemList.size
+        return items.size
     }
 
     // onBindViewHolder : 재활용 되는 뷰가 호출하여 실행되는 메서드, 뷰 홀더를 전달하고 어댑터는 position의 데이터를 결합시킨다
     override fun onBindViewHolder(holder: RecyclerViewAdapter.ViewHolder, position: Int) {
-        val item = itemList[position]
-        holder.tvTitle.setText(item.title)
-        val date = SimpleDateFormat("yyyy년 MM년 dd일 E요일 HH:mm").format(item.date)
-        holder.tvDate.setText(date)
+        val item = items[position]
+        holder.tvName.setText(item.nation)
+        holder.tvCur.setText(item.rate)
+    }
+
+    // item list 재할당
+    fun setData(updatedItems:ArrayList<Currency>) {
+        items.clear()
+        items.addAll(updatedItems)
+        notifyDataSetChanged()
     }
 
     // 뷰홀더 : 화면에 표시될 아이템 뷰를 저장하는 객체
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
-        val tvTitle : TextView
-        val tvDate : TextView
+        val tvName : TextView
+        val tvCur : TextView
 
         init {
-            tvTitle = view.findViewById(R.id.tvTitle)
-            tvDate = view.findViewById(R.id.tvDate)
-            val btnDelete : ImageButton = view.findViewById(R.id.btnDelete)
-            btnDelete.setOnClickListener {
-                adapterPosition
-                val item = itemList[adapterPosition]
-                viewModel.removeItem(item.id)
-            }
+            tvName = view.findViewById(R.id.tvName)
+            tvCur = view.findViewById(R.id.tvCur)
         }
-
     }
 
 }
