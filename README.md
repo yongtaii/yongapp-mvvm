@@ -9,6 +9,7 @@ Kotlin
 * [Android LiveData : Kotlin](https://github.com/yongtaii/yongapps/tree/master/Android-LiveDataBasic)
 * [Android MVVM : KaKao Search with Java](https://github.com/yongtaii/yongapps/tree/master/AndroidMVVM-Yongapp-KakaoSearch)
 * [Android ROOM : Todo List with Java](https://github.com/yongtaii/yongapps/tree/master/AndroidRoom-Yongapp-TodoList)
+* [Android Retrofit2&RxJava : Kotlin](https://github.com/yongtaii/yongapps/tree/master/Android-RetrofitRxJava)
 
 ## PDF File List
 * [PDF : Android LiveData](https://github.com/yongtaii/yongapps/tree/master/PDF)
