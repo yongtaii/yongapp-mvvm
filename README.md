@@ -16,6 +16,7 @@ Kotlin
 * [PDF : Android MVVM](https://github.com/yongtaii/yongapps/tree/master/PDF)
 * [PDF : Android NDK](https://github.com/yongtaii/yongapps/tree/master/PDF)
 * [PDF : Android ROOM](https://github.com/yongtaii/yongapps/tree/master/PDF)
+* [PDF : Android MemoryLeak](https://github.com/yongtaii/yongapps/tree/master/PDF)
 * [PDF : Android Retrofit2](https://github.com/yongtaii/yongapps/tree/master/PDF)
 * [PDF : Kotlin LateInit & Lazy](https://github.com/yongtaii/yongapps/tree/master/PDF)
 * [PDF : Kotlin Scope Function](https://github.com/yongtaii/yongapps/tree/master/PDF)
